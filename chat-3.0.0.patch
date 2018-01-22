@@ -1,0 +1,68 @@
+diff -Nuwr chat-2/src/main/java/org/certifiedsecure/chat/persistence/model/Message.java chat-3/src/main/java/org/certifiedsecure/chat/persistence/model/Message.java
+--- chat-2/src/main/java/org/certifiedsecure/chat/persistence/model/Message.java
++++ chat-3/src/main/java/org/certifiedsecure/chat/persistence/model/Message.java
+@@ -39,7 +39,7 @@
+ 	private String message;
+ 
+ 	public String getMessage() {
+-		return message.replaceAll(":([^:]*):", "<img class=emoji src=/static/emoji/$1.png>");
++		return message;
+ 	}
+ 
+ 	private Timestamp date;
+diff -Nuwr chat-2/src/main/java/org/certifiedsecure/chat/web/MessageController.java chat-3/src/main/java/org/certifiedsecure/chat/web/MessageController.java
+--- chat-2/src/main/java/org/certifiedsecure/chat/web/MessageController.java
++++ chat-3/src/main/java/org/certifiedsecure/chat/web/MessageController.java
+@@ -15,7 +15,6 @@
+ import org.springframework.web.bind.annotation.RequestMethod;
+ import org.springframework.web.bind.annotation.RequestParam;
+ import org.springframework.web.bind.annotation.RestController;
+-import org.springframework.web.util.HtmlUtils;
+ 
+ /**
+  * Controller for /message
+@@ -48,7 +47,6 @@
+ 	public Message addMessage(@AuthenticationPrincipal ChatUserPrincipal principal,
+ 			@RequestParam("channel") Long channel_id, @RequestParam("message") String message_text) {
+ 		Channel channel = channelRepository.findOne(channel_id);
+-		message_text = HtmlUtils.htmlEscape(message_text);
+ 		Message message = new Message(channel, principal.getUser(), message_text,
+ 				new Timestamp(System.currentTimeMillis()));
+ 		message = messageRepository.save(message);
+diff -Nuwr chat-2/src/main/resources/messages.properties chat-3/src/main/resources/messages.properties
+--- chat-2/src/main/resources/messages.properties
++++ chat-3/src/main/resources/messages.properties
+@@ -7,4 +7,4 @@
+ chat.help=HELP
+ security_error_access_denied=Access denied
+ help.title=HELP
+-help.text=<p>Supported markup:</p><p><strong>Emoji</strong>: use <em>:name:</em> to include emoji. For example, <em>:birthday:</em>.</p>
++help.text=<p>Supported markup:</p><p><strong>Emoji</strong>: use <em>:name:</em> to include emoji. For example, <em>:birthday:</em>.</p><p><strong>Links</strong>: all URLs are automatically transformed into HTML links.</p>
+diff -Nuwr chat-2/src/main/resources/static/application.css chat-3/src/main/resources/static/application.css
+--- chat-2/src/main/resources/static/application.css
++++ chat-3/src/main/resources/static/application.css
+@@ -296,3 +296,8 @@
+     background-image: url("/static/knot_small.png"); }
+     div.chat div.extra a:hover {
+       color: white; }
++
++div.chat div.message div.text a {
++  color: #e1d070; }
++  div.chat div.message div.text a:hover {
++    text-decoration: none; }
+diff -Nuwr chat-2/src/main/resources/static/application.js chat-3/src/main/resources/static/application.js
+--- chat-2/src/main/resources/static/application.js
++++ chat-3/src/main/resources/static/application.js
+@@ -222,7 +222,11 @@
+             meta_user.text(message.user.username);
+             meta_date.text(format_timestamp(message.date));
+ 
+-            text.html(message.message);
++            text.text(message.message);
++            var escaped_text = text.html();
++            escaped_text  = escaped_text.replace(/:([a-zA-Z0-9-]*):/, "<img class=\"emoji\" src=\"/static/emoji/$1.png\">");
++            escaped_text = escaped_text.replace(/([a-z]+:[^ ]*)/, "<a href=\"$1\" target=\"_BLANK\">$1</a>");
++            text.html(escaped_text);
+    
+             channel_content.get(0).scrollTop = channel_content.get(0).scrollHeight;
+         }

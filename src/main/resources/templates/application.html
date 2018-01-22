@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Chatty McChatface</title>
+        <link rel="stylesheet" type="text/css" href="/static/application.css" />
+        <link rel="icon" type="image/png" href="/static/favicon.ico" />
+        <cshead></cshead>
+		<meta name="username" th:content="${username}"/>
+		<meta name="channels" th:content="${channels}"/>
+    </head>
+    <body>
+        <div id="toolbar_container"></div>
+
+        <h1>
+            <span>
+                <span>Chatty</span> <small>Mc</small>Chatface
+            </span>
+        </h1>
+
+        <div id="overlay"></div>
+
+        <div class="container error popup">
+            <h2 th:text="#{error.title}"></h2>
+        </div>
+        <div class="container load popup">
+            <h2 th:text="#{load.title}"></h2>
+        </div>
+        <div class="container help popup">
+            <h2 th:text="#{help.title}"></h2>
+            <div th:utext="#{help.text}"></div>
+        </div>
+        <div class="container chat">
+            <div class="extra">
+                <a href="#" class="help" th:text="#{chat.help}"></a>
+            </div>
+            <div class="channel">
+                <ul class="channel_content"></ul>
+                <div class="channel_type">
+                    <form class="message_form" method="post" action="/message">
+                        <input type="text" autocomplete="off" name="message" placeholder="" th:placeholder="#{chat.message_placeholder}" />
+                        <button type="submit" th:text="#{chat.message_send}"></button>
+                    </form>
+                </div>
+            </div>
+            <div class="members">
+                <h2 th:text="#{chat.members.title}"></h2>
+                <ul class="members_list"></ul>
+            </div>
+            <div class="channels">
+                <h2 th:text="#{chat.channels.title}"></h2>
+                <ul class="channels_list"></ul>
+            </div>
+        </div>
+        <script type="text/javascript" src="/static/application.js"></script>
+    </body>
+</html>

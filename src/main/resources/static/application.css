@@ -1,0 +1,303 @@
+html, body {
+  font-family: "PT Serif Caption", serif;
+  margin: 0;
+  padding: 0;
+  min-width: 900px; }
+
+html {
+  background-image: url("/static/bg.jpg");
+  background-position: 100% 100%;
+  background-size: cover;
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  height: 100%;
+  position: relative; }
+
+h1, h2 {
+  color: #e1d070;
+  font-family: "PT Serif Caption", serif;
+  text-transform: uppercase; }
+
+h1 {
+  z-index: 1000;
+  background-image: url("/static/ribbon.png");
+  background-position: center center;
+  background-repeat: repeat-x;
+  background-color: #111e0d;
+  color: #e1d070;
+  font-weight: normal;
+  margin: 5px 0 5rem 0;
+  padding: 1rem 0;
+  text-align: center;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5); }
+  h1 > span {
+    background-color: #111e0d;
+    padding: 0 1rem; }
+    h1 > span small {
+      font-size: 75%; }
+    h1 > span span {
+      color: #fff7ca; }
+
+div.container {
+  position: relative;
+  z-index: 3000;
+  display: none;
+  margin: 5rem auto 0 auto; }
+
+div.chat {
+  background-color: #111e0d;
+  border: 1px solid #293823;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+  height: 428px;
+  position: relative;
+  width: 883px; }
+  div.chat div.channel {
+    position: absolute;
+    top: 14px;
+    left: 18px; }
+  div.chat div.members {
+    position: absolute;
+    left: 557px;
+    top: 14px;
+    width: 152px; }
+  div.chat div.channels {
+    position: absolute;
+    left: 712px;
+    top: 14px;
+    width: 153px; }
+  div.chat div.channels h2, div.chat div.members h2 {
+    font-size: 12px;
+    height: 35px;
+    line-height: 32px;
+    margin: 0;
+    text-align: center; }
+  div.chat div.channels ul, div.chat div.members ul {
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+    margin: 0;
+    height: 365px;
+    background-color: #293823;
+    list-style: none;
+    padding: 0; }
+    div.chat div.channels ul li, div.chat div.members ul li {
+      color: #e1d070;
+      font-size: 9px;
+      padding: 4px 4px 0 4px;
+      font-weight: bold; }
+      div.chat div.channels ul li .active, div.chat div.members ul li .active {
+        color: white; }
+      div.chat div.channels ul li img, div.chat div.members ul li img {
+        vertical-align: middle;
+        width: 18px;
+        height: 18px;
+        margin-right: 5px;
+        border-radius: 9999px; }
+    div.chat div.channels ul.channels_list li.active, div.chat div.members ul.channels_list li.active {
+      color: white; }
+    div.chat div.channels ul.channels_list li.denied, div.chat div.members ul.channels_list li.denied {
+      color: #e1d070;
+      font-style: italic; }
+    div.chat div.channels ul.channels_list li.allowed:hover, div.chat div.members ul.channels_list li.allowed:hover {
+      cursor: pointer;
+      color: white; }
+  div.chat ul.channel_content {
+    box-sizing: border-box;
+    padding: 5px;
+    margin: 0;
+    width: 536px;
+    height: 360px;
+    background-color: #293823;
+    list-style: none;
+    overflow-y: scroll; }
+    div.chat ul.channel_content li.message {
+      font-family: "Open Sans", sans-serif;
+      margin-bottom: 5px;
+      display: table;
+      width: 100%;
+      min-height: 52px; }
+      div.chat ul.channel_content li.message div.icon {
+        vertical-align: top;
+        width: 40px;
+        display: table-cell; }
+        div.chat ul.channel_content li.message div.icon img {
+          margin-top: 10px;
+          max-width: 40px;
+          max-height: 40px;
+          border-radius: 9999px; }
+      div.chat ul.channel_content li.message div.message {
+        vertical-align: top;
+        display: table-cell;
+        padding-left: 8px; }
+        div.chat ul.channel_content li.message div.message div.meta {
+          margin-bottom: .25rem; }
+          div.chat ul.channel_content li.message div.message div.meta div {
+            display: inline-block; }
+            div.chat ul.channel_content li.message div.message div.meta div.user {
+              font-size: 9px;
+              color: #e1d070;
+              font-weight: bold; }
+            div.chat ul.channel_content li.message div.message div.meta div.date {
+              font-size: 9px;
+              padding-left: 5px;
+              color: #5c7252; }
+        div.chat ul.channel_content li.message div.message div.text {
+          font-size: 12px; }
+  div.chat div.channel_type {
+    margin-top: 4px;
+    height: 36px;
+    background-color: #5c7252;
+    font-size: 0; }
+    div.chat div.channel_type input {
+      background: transparent;
+      border: none;
+      padding-left: .5rem;
+      font-size: 12px;
+      height: 36px;
+      width: 450px;
+      color: white; }
+      div.chat div.channel_type input::placeholder {
+        color: #111e0d; }
+    div.chat div.channel_type button {
+      font-weight: bold;
+      text-transform: uppercase;
+      background-color: #e1d070;
+      border: none;
+      color: #293823;
+      height: 35px;
+      font-size: 15px;
+      width: 85px;
+      margin-top: -1px; }
+      div.chat div.channel_type button:hover {
+        background: white; }
+
+div.popup {
+  margin-top: 10rem;
+  box-sizing: border-box;
+  width: 461px;
+  background-color: #111e0d;
+  padding: 32px 95px;
+  border: 1px solid #e1d070; }
+  div.popup h2 {
+    text-align: center;
+    margin: 0 0 32px 0; }
+  div.popup fieldset {
+    padding: 0; }
+  div.popup label {
+    display: none; }
+  div.popup:after {
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    content: "";
+    top: -85px;
+    left: 195px;
+    background-image: url("/static/knot.png");
+    background-size: 100% 100%; }
+
+div.load h2 {
+  margin-bottom: 0; }
+
+fieldset {
+  border: none; }
+
+button, input {
+  box-sizing: border-box;
+  border: none; }
+  button:focus, input:focus {
+    outline: none; }
+
+input {
+  color: #e1d070; }
+
+button:hover {
+  cursor: pointer; }
+
+b, strong {
+  font-weight: bold;
+  color: #e1d070; }
+
+i, em {
+  font-style: italic; }
+
+div#overlay {
+  z-index: 2000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  transition: all 1s; }
+  div#overlay.active {
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: all 1s; }
+
+div#overlay_topleft {
+  z-index: 4000; }
+  div#overlay_topleft div.floatbox_milestone_list {
+    display: none; }
+
+div.current {
+  display: table;
+  width: 100%;
+  margin-bottom: 32px; }
+  div.current > div {
+    display: table-cell;
+    vertical-align: middle; }
+    div.current > div.label {
+      color: #e1d070; }
+    div.current > div.image {
+      text-align: right; }
+      div.current > div.image img {
+        width: 35px;
+        height: 35px;
+        margin-right: 21px; }
+
+@font-face {
+  font-family: "PT Serif Caption";
+  font-style: normal;
+  font-weight: normal;
+  src: url("/static/pt-serif-regular.ttf"); }
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: normal;
+  src: url("/static/opensans-regular.ttf"); }
+@font-face {
+  font-family: 'Open Sans';
+  src: url("/static/opensans-bold.ttf");
+  font-weight: bold;
+  font-style: normal; }
+@font-face {
+  font-family: 'Open Sans Light';
+  src: url("/static/opensans-light.ttf");
+  font-weight: normal;
+  font-style: normal; }
+img.emoji {
+  height: 32px; }
+
+div.chat div.extra {
+  position: absolute;
+  width: 883px;
+  text-align: center;
+  bottom: -50px;
+  text-transform: uppercase; }
+  div.chat div.extra a {
+    color: #e1d070;
+    text-decoration: none;
+    font-size: 12px;
+    padding-left: 30px;
+    margin-right: 15px;
+    display: inline-block;
+    height: 33px;
+    line-height: 25px;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-image: url("/static/knot_small.png"); }
+    div.chat div.extra a:hover {
+      color: white; }
+
+div.chat div.message div.text a {
+  color: #e1d070; }
+  div.chat div.message div.text a:hover {
+    text-decoration: none; }
