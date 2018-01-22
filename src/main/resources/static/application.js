@@ -228,6 +228,10 @@ UI.prototype.draw_active_channel = function() {
             escaped_text = escaped_text.replace(/([a-z]+:[^ ]*)/, "<a href=\"$1\" target=\"_BLANK\">$1</a>");
             //this is vulnerable since you can put href with javascript function, e.g.
             //javascript:alert(1), so if people click on it, you can take all of his cookies (in a jar :))
+            //fix it:
+            // regex https?:\/ .... for href (NOT a good solution)
+            // open redirect vulnerability: phishing --> verify links, outgoing link dialog (difficult)
+            // window.opener vulnerability also phishing --> noopener noreferrer
             text.html(escaped_text);
    
             channel_content.get(0).scrollTop = channel_content.get(0).scrollHeight;
